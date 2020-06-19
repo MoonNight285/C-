@@ -1,0 +1,21 @@
+string solution(vector<string> participant, vector<string> completion) {
+	multiset<string> temp;
+	multiset<string>::iterator pos;
+	int participant_count = 0;
+
+	for (int i = 0; i < completion.size(); ++i)
+		temp.insert(completion[i]);
+
+	while (1) {
+		pos = temp.find(participant[participant_count]);
+		if (pos != temp.end()) 
+			temp.erase(pos);
+		else
+			return participant[participant_count];
+		participant_count++;
+
+		if (participant_count == participant.size())
+			break;
+	}
+	return "fail";
+}
